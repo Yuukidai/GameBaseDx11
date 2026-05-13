@@ -21,8 +21,10 @@ void TestScene::Update()
 {
 	if (Input::IsKeyDown(DIK_SPACE))//DIKはダイレクトxのコードらしい
 	{
-		SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
-		pSceneManager->ChangeScene(SCENE_ID_PLAY);
+		//見つからない場合はnullptrを返すので、nluuptrでなことを確認して
+		//SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
+		SceneManager* pSceneManager = (SceneManager*)(this->GetParent());
+		pSceneManager->ChangeScene(SCENE_ID_PLAY);//スペースキー押したらプレイシーンを探して切り替える
 	}
 }
 

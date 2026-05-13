@@ -19,5 +19,8 @@ public:
 
 	//開放
 	void Release() override;
+private:
+	int hModel_; //モデルのハンドル こいつに番号を入れるとモデルが表示できるようになる
+	Transform ot_;//おでん用のトランスフォーム
 };
 
