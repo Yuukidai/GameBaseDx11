@@ -1,5 +1,8 @@
 #include "PlayScene.h"
 #include "Engine/Model.h" //\\でもオッケー
+#include "Player.h"
+#include "Bullet.h"
+#include "Engine/SceneManager.h"
 
 
 #include "Engine/Direct3D.h"
@@ -16,25 +19,20 @@ void PlayScene::Initialize()
 {
 	hModel_ = Model::Load("Oden.fbx");
 	assert(hModel_ >= 0);//読み込みに失敗したらすぐエラーになって落ちるのはゲーム的にはよくないけど開発中はおｋ
-	
+	Instantiate<Player>(this);//playerのインスタンス＝プレイヤーのオブジェクトを作る
+	Instantiate<Bullet>(this);
+	//Instantiate<Bullet>(this);
+
+
+
 }
 
 void PlayScene::Update()
 {
-	static float time = 0.0f;
-
-	ot_.position_ = { 0.0f, 0.0f, 10.0f };
-	ot_.scale_ = { 0.5f, 0.5f, 0.5f };
-	//ot_.rotate_= {0.0f,0.0f,0.0f};
-
-	//ot_.rotate_.y = time;
-	time += 0.025f;
-	ot_.position_.x = 6.0f * sin(time);
-	//float posx = 6.0 * sin(0.2f * time);
-	//float posy = cos(3.0f * time);
-	//ot_.position_.x = posx;
-	//ot_.position_.y = posy;
-
+	if (FindObject("Enemy")== nullptr) {
+		SceneManager* pSceneManager = (SceneManager*)(this->GetParent());
+		pSceneManager->ChangeScene(SCENE_ID_CLEAR);//スペースキー押したらプレイシーンを探して切り替える
+	}
 	
 }
 
