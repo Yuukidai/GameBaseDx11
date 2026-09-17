@@ -11,7 +11,7 @@ Player::Player(GameObject* parent)
 
 void Player::Initialize()
 {
-	hModel_ = Model::Load("hontai.fbx");
+	hModel_ = Model::Load("furai.fbx");
 	assert(hModel_ >= 0);
 	transform_.position_ = { 0.0f,-4.0f,0.0f };
 }
@@ -27,6 +27,16 @@ void Player::Update()
 	{
 		//右に移動
 		transform_.position_.x = transform_.position_.x + 0.1f;
+	}
+	if (Input::IsKey(DIK_UP) || Input::IsKey(DIK_W))
+	{
+		//右に移動
+		transform_.position_.y = transform_.position_.y + 0.1f;
+	}
+	if (Input::IsKey(DIK_DOWN) || Input::IsKey(DIK_S))
+	{
+		//右に移動
+		transform_.position_.y = transform_.position_.y - 0.1f;
 	}
 	if (Input::IsKey(DIK_SPACE))
 	{

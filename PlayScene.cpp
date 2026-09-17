@@ -4,6 +4,7 @@
 #include "Bullet.h"
 #include "Enemy.h"
 #include "Engine/SceneManager.h"
+#include "Engine/Input.h"
 
 namespace {
 	Player* player_ = nullptr;
@@ -15,21 +16,19 @@ PlayScene::PlayScene(GameObject* parent)
 
 void PlayScene::Initialize()
 {
-	for (int i = 0;i < 15;i++) {
-		float posx = (((float)rand() / RAND_MAX) * 20.0f) - 10.0f;
-		Enemy* e = Instantiate<Enemy>(this);//Playerのインスタンス＝プレイヤーオブジェクトを作る
-		e->SetPosiition(posx*10.0f, 0.0f, 20.0f);
-	}
-	Instantiate<Player>(this);//Playerのインスタンス＝プレイヤーオブジェクトを作る
 
+	Instantiate<Player>(this);//Playerのインスタンス＝プレイヤーオブジェクトを作る
+	Instantiate<Bullet>(this);//Playerのインスタンス＝プレイヤーオブジェクトを作る
+	Instantiate<Enemy>(this);
 }
 
 void PlayScene::Update()
 {
-	if (FindObject("Enemy")==nullptr) {
+	if (Input::IsKey(DIK_I)) {
 		SceneManager* pSceneManager = (SceneManager*)(this->GetParent());
 		pSceneManager->ChangeScene(SCENE_ID_CLEAR);
 	}
+
 }
 
 void PlayScene::Draw()

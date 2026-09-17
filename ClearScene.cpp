@@ -8,7 +8,7 @@ ClearScene::ClearScene(GameObject* parent)
 
 void ClearScene::Initialize()
 {
-	hClearPic_ = Image::Load("clear.jpg");
+	hClearPic_ = Image::Load("clear.png.jpg");
 	assert(hClearPic_ >= 0);
 }
 
